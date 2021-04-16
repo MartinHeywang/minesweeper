@@ -1,0 +1,78 @@
+@use "./colors" as clr;
+
+.board {
+    width: 100%;
+    display: inline-grid;
+    place-content: center;
+
+    $size: clamp(1rem, 8vw, 3rem);
+    grid-template-columns: repeat(var(--board-columns-count), $size);
+    grid-template-rows: repeat(var(--board-rows-count), $size);
+    font-size: $size;
+
+    filter: drop-shadow(10px 10px 0px rgba(black, 15%));
+
+    padding: 3rem 0;
+
+    .board__square {
+        all: unset;
+        box-sizing: border-box;
+        user-select: none;
+
+        transition: background-color 200ms linear;
+
+        display: grid;
+        place-items: center;
+        font-size: 60%;
+        font-weight: bold;
+
+        // grass hidden -> green
+        // grass discovered -> cream
+        // grass marked -> green with red flag
+
+        // bomb hidden -> green
+        // bomb discovered -> dark grey
+        // bomb marked -> green with red flag
+
+        &[data-type=bomb] {
+            background-color: clr.$bomb;
+        }
+
+        &[data-type=grass],
+        &[data-type=bomb][data-status=hidden],
+        &[data-type=bomb][data-status=marked] {
+            background-color: clr.$grass;
+        }
+
+        &[data-type=grass][data-status=discovered] {
+            background-color: clr.$terrain;
+        }
+
+        &.light {
+            filter: brightness(110%);
+        }
+
+        &:hover {
+            filter: brightness(90%);
+            cursor: pointer;
+        }
+
+        &[data-status=discovered] {
+            pointer-events: none;
+        }
+    }
+
+    .board__square > img {
+        max-width: 80%;
+    }
+
+}
+.you-lose {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 2.7rem;
+    font-weight: bold;
+}

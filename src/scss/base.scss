@@ -1,0 +1,25 @@
+@use "./colors" as clr;
+
+:root {
+    --board-columns-count: 10;
+    --board-rows-count: 15;
+}
+
+body {
+    min-height: 100vh;
+    background-color: mix(clr.$grass, black, 20%);
+
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    margin: auto;
+    width: min(90%, 600px);
+    position: relative;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}

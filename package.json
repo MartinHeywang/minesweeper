@@ -11,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sass": "^1.32.4"
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "sass": "^1.32.4",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
-    "parcel": "^2.0.0-beta.2"
+    "parcel-bundler": "^1.12.5"
   }
 }

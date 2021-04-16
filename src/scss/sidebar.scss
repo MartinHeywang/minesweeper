@@ -1,0 +1,16 @@
+@use "./colors" as clr;
+
+.sidebar {
+    min-width: 30%;
+
+    padding: 1em 2em;
+    margin-top: 3rem;
+
+    &__title {
+        font-size: 2rem;
+    }
+
+    &__desc {
+        font-size: 1.3rem;
+    }
+}
