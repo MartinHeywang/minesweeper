@@ -6,7 +6,7 @@
   grid-template-rows: repeat(var(--board-rows-count), min(5vw, 3rem));
   font-size: min(5vw, 3rem);
   filter: drop-shadow(10px 10px 0px rgba(0, 0, 0, 0.15));
-  padding: 3rem 0;
+  margin: 2rem 0;
 }
 .board .board__square {
   all: unset;

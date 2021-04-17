@@ -6,16 +6,30 @@
         <title>Minesweeper!</title>
 
         <link rel="stylesheet" href="./css/main.css" />
-
         <link rel="icon" href="./assets/svg/icon.svg" />
-        <meta name="og:icon" content="./assets/svg/icon.svg" />
+
+        <meta name="og:image" content="./assets/svg/icon.svg" />
+        <meta name="og:title" content="Play Minesweeper!" />
+        <meta name="og:url" content="https://martinheywang.github.io/minesweeper" />
+        <meta name="og:description" content="The Minesweeper game as you know it.">
 
         <script defer src="js/index.js"></script>
     </head>
 
     <body>
         <div class="container">
+            <div class="introduction">
+                <div class="title">
+                    <img src="./assets/svg/icon.svg" />
+                    <h1>Minesweeper!</h1>
+                </div>
+
+                <h4>
+                    Left click to discover a square, right click to mark a case.
+                </h4>
+            </div>
             <div class="board"></div>
+            <p>Copyright &copy; 2021 Martin Heywang</p>
         </div>
     </body>
 </html>

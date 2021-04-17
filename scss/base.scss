@@ -16,7 +16,10 @@ body {
 .container {
     margin: auto;
     width: min(90%, 600px);
-    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 img {

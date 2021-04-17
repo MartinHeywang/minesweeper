@@ -13,7 +13,9 @@ body {
 .container {
   margin: auto;
   width: min(90%, 600px);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 img {
@@ -37,16 +39,25 @@ h6 {
   margin: 0;
 }
 
-.sidebar {
-  min-width: 30%;
-  padding: 1em 2em;
-  margin-top: 3rem;
+.introduction {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.sidebar__title {
-  font-size: 2rem;
+.introduction h4 {
+  font-weight: 300;
 }
-.sidebar__desc {
-  font-size: 1.3rem;
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title img {
+  width: 10%;
+  margin-right: 2rem;
 }
 
 .board {
@@ -57,7 +68,7 @@ h6 {
   grid-template-rows: repeat(var(--board-rows-count), min(5vw, 3rem));
   font-size: min(5vw, 3rem);
   filter: drop-shadow(10px 10px 0px rgba(0, 0, 0, 0.15));
-  padding: 3rem 0;
+  margin: 2rem 0;
 }
 .board .board__square {
   all: unset;
