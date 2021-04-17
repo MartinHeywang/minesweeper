@@ -109,7 +109,7 @@ const toggleMark = (square) => {
     setStatus(square, "marked")
 
     const flag = document.createElement("img")
-    flag.setAttribute("src", "../assets/svg/icon.svg")
+    flag.setAttribute("src", "./assets/svg/icon.svg")
     return square.appendChild(flag)
 }
 
