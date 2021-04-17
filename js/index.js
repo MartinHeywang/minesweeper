@@ -104,6 +104,7 @@ const toggleMark = (square) => {
     if (isMarked(square)) {
         setStatus(square, "hidden")
         square.innerHTML = ""
+        return
     }
 
     setStatus(square, "marked")
