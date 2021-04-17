@@ -1,0 +1,53 @@
+.board {
+  width: 100%;
+  display: inline-grid;
+  place-content: center;
+  grid-template-columns: repeat(var(--board-columns-count), clamp(1rem, 8vw, 3rem));
+  grid-template-rows: repeat(var(--board-rows-count), clamp(1rem, 8vw, 3rem));
+  font-size: clamp(1rem, 8vw, 3rem);
+  filter: drop-shadow(10px 10px 0px rgba(0, 0, 0, 0.15));
+  padding: 3rem 0;
+}
+.board .board__square {
+  all: unset;
+  box-sizing: border-box;
+  user-select: none;
+  transition: background-color 200ms linear;
+  display: grid;
+  place-items: center;
+  font-size: 60%;
+  font-weight: bold;
+}
+.board .board__square[data-type=bomb] {
+  background-color: #0d0d0d;
+}
+.board .board__square[data-type=grass], .board .board__square[data-type=bomb][data-status=hidden], .board .board__square[data-type=bomb][data-status=marked] {
+  background-color: #449438;
+}
+.board .board__square[data-type=grass][data-status=discovered] {
+  background-color: #ebd982;
+}
+.board .board__square.light {
+  filter: brightness(110%);
+}
+.board .board__square:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+.board .board__square[data-status=discovered] {
+  pointer-events: none;
+}
+.board .board__square > img {
+  max-width: 80%;
+}
+
+.you-lose {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.7rem;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=board.css.map */

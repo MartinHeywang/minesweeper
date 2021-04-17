@@ -1,0 +1,13 @@
+.sidebar {
+  min-width: 30%;
+  padding: 1em 2em;
+  margin-top: 3rem;
+}
+.sidebar__title {
+  font-size: 2rem;
+}
+.sidebar__desc {
+  font-size: 1.3rem;
+}
+
+/*# sourceMappingURL=sidebar.css.map */
