@@ -1,5 +1,3 @@
-import flagImg from "../assets/svg/icon.svg" // eslint-disable-line
-
 document.documentElement.style.setProperty("--board-columns-count", "15")
 document.documentElement.style.setProperty("--board-rows-count", "20")
 
@@ -110,7 +108,8 @@ const toggleMark = (square) => {
 
     setStatus(square, "marked")
 
-    const flag = document.createElement("img", { src: flagImg })
+    const flag = document.createElement("img")
+    flag.setAttribute("src", "../assets/svg/icon.svg")
     return square.appendChild(flag)
 }
 
@@ -184,8 +183,8 @@ function isMarked(square) {
 }
 
 function areInGrid(coord) {
-    if (coord.x < 0 || coord.x > boardColumnsCount) return false
-    if (coord.y < 0 || coord.y > boardRowsCount) return false
+    if (coord.x < 0 || coord.x > boardColumnsCount - 1) return false
+    if (coord.y < 0 || coord.y > boardRowsCount - 1) return false
     return true
 }
 
