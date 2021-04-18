@@ -72,10 +72,27 @@ function getBombsAround(square) {
     }, 0)
 }
 
-const lose = () => {
+const showLoseModal = () => {
     board.style.pointerEvents = "none"
     board.style.filter = "brightness(50%)"
-    alert("You lose ! Reload the page to restart.")
+
+    const modal = document.body.querySelector(".modal")
+    setTimeout(() => {
+        modal.style.display = "block"
+        modal.style.opacity = "100%"
+    }, 250)
+}
+
+const showWinModal = () => {
+    document.querySelector(".modal__title").textContent = "Congrats! You won!"
+    board.style.pointerEvents = "none"
+    board.style.filter = "brightness(50%)"
+
+    const modal = document.body.querySelector(".modal")
+    setTimeout(() => {
+        modal.style.display = "block"
+        modal.style.opacity = "100%"
+    }, 250)
 }
 
 const discover = (square) => {
@@ -84,7 +101,7 @@ const discover = (square) => {
     setStatus(square, "discovered")
 
     if (isBomb(square)) {
-        return lose()
+        return showLoseModal()
     }
 
     const bombsAround = getBombsAround(square)
@@ -96,6 +113,16 @@ const discover = (square) => {
 
     const coordAround = getCoordsAround(square)
     coordAround.forEach(({ x, y }) => discover(getSquareAt({ x, y })))
+}
+
+const hasWon = () => {
+    const squares = board.querySelectorAll(".board__square")
+
+    for(square of squares) {
+        if (isHidden(square)) return false
+    }
+
+    return true
 }
 
 const toggleMark = (square) => {
@@ -137,6 +164,11 @@ const populateBoard = () => {
 
             square.addEventListener("click", () => {
                 discover(square)
+                if (hasWon()) {
+                    console.log("won:")
+                    return showWinModal()
+                }
+                console.log('lose')
             })
             square.addEventListener("contextmenu", (event) => {
                 event.preventDefault()

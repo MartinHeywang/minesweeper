@@ -10,8 +10,14 @@
 
         <meta name="og:image" content="./assets/svg/icon.svg" />
         <meta name="og:title" content="Play Minesweeper!" />
-        <meta name="og:url" content="https://martinheywang.github.io/minesweeper" />
-        <meta name="og:description" content="The Minesweeper game as you know it.">
+        <meta
+            name="og:url"
+            content="https://martinheywang.github.io/minesweeper"
+        />
+        <meta
+            name="og:description"
+            content="The Minesweeper game as you know it."
+        />
 
         <script defer src="js/index.js"></script>
     </head>
@@ -25,11 +31,18 @@
                 </div>
 
                 <h4>
-                    Left click to discover a square, right click to mark a case.
+                    Desktop: left click to reveal, right click to mark.<br />
+                    Mobile: simple tap to reveal, hold to mark
                 </h4>
             </div>
             <div class="board"></div>
             <p>Copyright &copy; 2021 Martin Heywang</p>
+
+            <div class="modal">
+                <h2 class="modal__title">A bomb exploded !</h2>
+                <p class="modal__subtitle">Refresh the page to reload the game.</p>
+                <a href="javascript:window.location.reload(true)">Reload!</a>
+            </div>
         </div>
     </body>
 </html>
