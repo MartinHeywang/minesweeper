@@ -1,0 +1,16 @@
+@use "./colors" as clr;
+
+.header {
+    text-align: center;
+
+    padding-top: 2rem;
+    line-height: 1.2;
+
+    &__title {
+        margin: 0;
+    }
+
+    &__subtitle {
+        margin: 0;
+    }
+}

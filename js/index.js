@@ -1,13 +1,29 @@
-document.documentElement.style.setProperty("--board-columns-count", "15")
-document.documentElement.style.setProperty("--board-rows-count", "20")
-
 const board = document.querySelector(".board")
-const boardColumnsCount = parseInt(
-    document.documentElement.style.getPropertyValue("--board-columns-count")
-)
-const boardRowsCount = parseInt(
-    document.documentElement.style.getPropertyValue("--board-rows-count")
-)
+
+const defaultBombs = 30
+const bombsParam = getURLParam("bombs", defaultBombs)
+const bombsCount = bombsParam < 0 ? defaultBombs : parseInt(bombsParam)
+
+const defaultWidth = 25
+const widthParam = getURLParam("columns", defaultWidth)
+const boardWidth = widthParam < 0 ? defaultWidth : parseInt(widthParam)
+
+const defaultHeight = 10
+const heightParam = getURLParam("rows", defaultHeight)
+const boardHeight = heightParam < 0 ? defaultHeight : parseInt(heightParam)
+
+const ratio = bombsCount / (boardWidth * boardHeight)
+
+const ratioElement = document.createElement("p")
+ratioElement.textContent = `Average: ${(ratio * 100).toPrecision(2)} bombs for 100 squares.`
+board.parentElement.insertBefore(ratioElement, board)
+
+setCustomProperty("board-columns-count", boardWidth.toString())
+setCustomProperty("board-rows-count", boardHeight.toString())
+
+// + number of attempts
+// + time used
+// + number of flags
 
 const numberColors = [
     "hsl(190deg, 75%, 50%)",
@@ -25,7 +41,7 @@ const generateBombs = (bombsCount, cellsCount) => {
 
     const random = () => Math.floor(Math.random() * cellsCount)
 
-    for (let i = 0; i < bombsCount; i++) {
+    for (let i = 0; i < bombsCount + 1; i++) {
         let number = random()
         while (bombs.includes(number)) {
             number = random()
@@ -46,15 +62,14 @@ function getCoordsAround(square) {
     }
 
     const result = [
-        // checks the 8 squares around if they are in grid
-        checker(x - 1, y - 1),
-        checker(x, y - 1),
-        checker(x + 1, y - 1),
-        checker(x - 1, y),
-        checker(x + 1, y),
-        checker(x - 1, y + 1),
-        checker(x, y + 1),
-        checker(x + 1, y + 1),
+        checker(x - 1, y - 1), // top left
+        checker(x, y - 1), // top
+        checker(x + 1, y - 1), // top right
+        checker(x - 1, y), // left
+        checker(x + 1, y), // right
+        checker(x - 1, y + 1), // bottom left
+        checker(x, y + 1), // bottom
+        checker(x + 1, y + 1), // bottom right
     ]
 
     // remove the ones that are undefined
@@ -118,7 +133,7 @@ const discover = (square) => {
 const hasWon = () => {
     const squares = board.querySelectorAll(".board__square")
 
-    for(square of squares) {
+    for (square of squares) {
         if (isHidden(square)) return false
     }
 
@@ -142,11 +157,12 @@ const toggleMark = (square) => {
 }
 
 const populateBoard = () => {
-    const bombs = generateBombs(30, boardColumnsCount * boardRowsCount)
+    board.innerHTML = ""
+    const bombs = generateBombs(bombsCount, boardWidth * boardHeight)
 
     let cellIndex = 0
-    for (let y = 0; y < boardRowsCount; y++) {
-        for (let x = 0; x < boardColumnsCount; x++) {
+    for (let y = 0; y < boardHeight; y++) {
+        for (let x = 0; x < boardWidth; x++) {
             cellIndex++
 
             const square = document.createElement("button")
@@ -165,14 +181,15 @@ const populateBoard = () => {
             square.addEventListener("click", () => {
                 discover(square)
                 if (hasWon()) {
-                    console.log("won:")
                     return showWinModal()
                 }
-                console.log('lose')
             })
             square.addEventListener("contextmenu", (event) => {
                 event.preventDefault()
                 toggleMark(square)
+                if (hasWon()) {
+                    return showWinModal()
+                }
             })
 
             board.appendChild(square)
@@ -216,8 +233,8 @@ function isMarked(square) {
 }
 
 function areInGrid(coord) {
-    if (coord.x < 0 || coord.x > boardColumnsCount - 1) return false
-    if (coord.y < 0 || coord.y > boardRowsCount - 1) return false
+    if (coord.x < 0 || coord.x > boardWidth - 1) return false
+    if (coord.y < 0 || coord.y > boardHeight - 1) return false
     return true
 }
 
@@ -252,4 +269,27 @@ function getY(square) {
 
 function setY(square, newY) {
     square.dataset.y = newY
+}
+
+function getCustomProperty(name) {
+    return document.documentElement.style.getPropertyValue(`--${name}`)
+}
+
+function setCustomProperty(name, value) {
+    document.documentElement.style.setProperty(`--${name}`, value)
+}
+
+function getURLParams() {
+    const vars = {}
+    window.location.href.replace(
+        /[?&]+([^=&]+)=([^&]*)/gi,
+        function (_m, key, value) {
+            vars[key] = value
+        }
+    )
+    return vars
+}
+
+function getURLParam(parameter, defaultValue) {
+    return getURLParams()[parameter] || defaultValue
 }

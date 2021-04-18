@@ -2,9 +2,9 @@
   width: 100%;
   display: inline-grid;
   place-content: center;
-  grid-template-columns: repeat(var(--board-columns-count), min(5vw, 3rem));
-  grid-template-rows: repeat(var(--board-rows-count), min(5vw, 3rem));
-  font-size: min(5vw, 3rem);
+  grid-template-columns: repeat(var(--board-columns-count), min(calc(90vw / var(--board-columns-count)), 3rem));
+  grid-template-rows: repeat(var(--board-rows-count), min(calc(90vw / var(--board-columns-count)), 3rem));
+  font-size: min(calc(90vw / var(--board-columns-count)), 3rem);
   filter: drop-shadow(10px 10px 0px rgba(0, 0, 0, 0.15));
   margin: 2rem 0;
 }

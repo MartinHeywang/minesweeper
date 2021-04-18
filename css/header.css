@@ -1,0 +1,13 @@
+.header {
+  text-align: center;
+  padding-top: 2rem;
+  line-height: 1.2;
+}
+.header__title {
+  margin: 0;
+}
+.header__subtitle {
+  margin: 0;
+}
+
+/*# sourceMappingURL=header.css.map */

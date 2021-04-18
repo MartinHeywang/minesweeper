@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="./css/main.css" />
         <link rel="icon" href="./assets/svg/icon.svg" />
 
-        <meta name="og:image" content="./assets/svg/icon.svg" />
+        <meta name="og:icon" content="./assets/svg/icon.svg" />
         <meta name="og:title" content="Play Minesweeper!" />
         <meta
             name="og:url"
@@ -16,33 +16,83 @@
         />
         <meta
             name="og:description"
-            content="The Minesweeper game as you know it."
+            content="The most explosive game ever created."
         />
 
         <script defer src="js/index.js"></script>
     </head>
 
     <body>
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Minesweeper!</h1>
+                <p class="header__subtitle">
+                    The most explosive game ever created.
+                </p>
+            </div>
+        </header>
+
         <div class="container">
-            <div class="introduction">
-                <div class="title">
-                    <img src="./assets/svg/icon.svg" />
-                    <h1>Minesweeper!</h1>
-                </div>
-
-                <h4>
-                    Desktop: left click to reveal, right click to mark.<br />
-                    Mobile: simple tap to reveal, hold to mark
-                </h4>
-            </div>
             <div class="board"></div>
-            <p>Copyright &copy; 2021 Martin Heywang</p>
+        </div>
 
-            <div class="modal">
-                <h2 class="modal__title">A bomb exploded !</h2>
-                <p class="modal__subtitle">Refresh the page to reload the game.</p>
-                <a href="javascript:window.location.reload(true)">Reload!</a>
+        <section class="controls">
+            <div class="container">
+                <h1>Having trouble with the controls ?</h1>
+                <p><b>Desktop:</b> left click to reveal, right click to mark a bomb.</p>
+                <p><b>Mobile:</b> tap to reveal, tap and hold to mark a bomb.</p>
             </div>
+        </section>
+
+        <section class="custom">
+            <div class="container">
+                <h1>Change the difficulty of your game :</h1>
+                <div class="custom__presets">
+                    <a class="custom__easy"href="/?bombs=40&columns=20&rows=15">Easy</a>
+                    <a class="custom__medium"href="/?bombs=100&columns=30&rows=20">Medium</a>
+                    <a class="custom__hard"href="/?bombs=200&columns=40&rows=25">Hard</a>
+                </div>
+                <h1>or customize it !</h1>
+                <form action="/" method="get" class="custom__form">
+                    <label for="bombs-input">Number of bombs:</label>
+                    <input
+                        class="custom__bombs-input"
+                        name="bombs"
+                        id="bombs-input"
+                        min="1"
+                        max="2000"
+                    />
+                    <label for="columns-input">Width of the board:</label>
+                    <input
+                        class="custom__bombs-input"
+                        name="columns"
+                        id="columns-input"
+                        min="3"
+                        max="70"
+                    />
+                    <label for="rows-input">Height of the board:</label>
+                    <input
+                        class="rows__bombs-input"
+                        name="rows"
+                        id="rows-input"
+                        min="3"
+                        max="70"
+                    />
+                    <button class="custom__submit">Play!</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="container">
+            <p style="text-align: center">
+                Copyright &copy; 2021 Martin Heywang
+            </p>
+        </div>
+
+        <div class="modal">
+            <h2 class="modal__title">A bomb exploded !</h2>
+            <p class="modal__subtitle">Refresh the page to reload the game.</p>
+            <a href="javascript:window.location.reload(true)">Reload!</a>
         </div>
     </body>
 </html>
