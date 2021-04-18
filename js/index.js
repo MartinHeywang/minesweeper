@@ -25,6 +25,8 @@ setCustomProperty("board-rows-count", boardHeight.toString())
 // + time used
 // + number of flags
 
+let flagCount = 0;
+
 const numberColors = [
     "hsl(190deg, 75%, 50%)",
     "hsl(240deg, 75%, 50%)",
@@ -41,7 +43,7 @@ const generateBombs = (bombsCount, cellsCount) => {
 
     const random = () => Math.floor(Math.random() * cellsCount)
 
-    for (let i = 0; i < bombsCount + 1; i++) {
+    for (let i = 0; i < bombsCount; i++) {
         let number = random()
         while (bombs.includes(number)) {
             number = random()
@@ -146,8 +148,16 @@ const toggleMark = (square) => {
     if (isMarked(square)) {
         setStatus(square, "hidden")
         square.innerHTML = ""
+        flagCount--;
         return
     }
+
+    if(flagCount === bombsCount) {
+        alert("You have no flag left.")
+        return
+    }
+
+    flagCount++;
 
     setStatus(square, "marked")
 
