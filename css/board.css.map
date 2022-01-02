@@ -1,1 +1,0 @@
-{"version":3,"sourceRoot":"","sources":["../scss/board.scss","../scss/_colors.scss"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;EAGA;EACA;EACA,WAHO;EAKP;EAEA;;AAEA;EACI;EACA;EACA;EAEA;EAEA;EACA;EACA;EACA;;AAUA;EACI,kBClCL;;ADqCC;EAGI,kBC3CJ;;AD8CA;EACI,kBC7CF;;ADgDF;EACI;;AAGJ;EACI;EACA;;AAGJ;EACI;;AAIR;EACI;;;AAIR;EACI;EACA;EACA;EACA;EAEA;EACA","file":"board.css"}

@@ -1,9 +1,9 @@
 @use "./colors" as clr;
 
-@use "./base.scss";
-@use "./reset.scss";
+@import "./base.scss";
+@import "./reset.scss";
 
-@use "./header.scss";
-@use "./board.scss";
-@use "./custom.scss";
-@use "./modal.scss";
+@import "./header.scss";
+@import "./board.scss";
+@import "./custom.scss";
+@import "./modal.scss";
